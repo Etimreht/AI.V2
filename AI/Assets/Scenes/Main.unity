@@ -5945,6 +5945,7 @@ GameObject:
   - component: {fileID: 1330750748}
   - component: {fileID: 1330750747}
   - component: {fileID: 1330750751}
+  - component: {fileID: 1330750752}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -6063,6 +6064,18 @@ MonoBehaviour:
   HearingPrefab: {fileID: 1516685456284162, guid: 8291d9e9f32d51540a7e8586be27bf5a,
     type: 2}
   AItransform: {fileID: 1330750746}
+--- !u!114 &1330750752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1330750745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa8c0cd767641149b39e2dfe788c741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 1545901288}
 --- !u!1 &1386551000
 GameObject:
   m_ObjectHideFlags: 0

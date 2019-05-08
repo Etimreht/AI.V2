@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sight : MonoBehaviour {
+public class Sight : MonoBehaviour
+{
+    public Transform Target;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private Vector3 TargetDirection;
+    float angle;
+
+    private void Update()
+    {
+        TargetDirection = Target.position - transform.position;
+        angle = Vector3.Angle(TargetDirection, transform.forward);
+
+        if (angle < 5.0f)
+        {
+            //Initiate State Switch
+        }
+    }
 }
