@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    float moveSpeedNormal = 1.0f, moveSpeedCrouching = 0.6f, movementSpeed = 0.0f, moveSpeedSprint = 1.8f;   //Movement Speed Defaults ~SUBJECT TO CHANGE~
+
+    float moveSpeedNormal = 1.0f, moveSpeedCrouching = 0.6f, moveSpeedSprint = 1.8f;   //Movement Speed Defaults ~SUBJECT TO CHANGE~
+    public float movementSpeed = 0.0f;
     float noiseLevelNormal = 1.0f, noiseLevelCrouching = 0.5f, noiseLevelSprint = 1.6f, noiseLevel = 0.0f;   //Noise Defaults ~SUBJECT TO CHANGE~
     bool Crouch, Sprint; //Crouch & Sprinting Defaults
     float CrouchHeightNormal = 0.4332f, CrouchHeightCrouched = 0.5f, CrouchHeight = 1f; //Crouch Height Defaults  
@@ -26,13 +29,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        MovementHorizontal = (transform.forward * Input.GetAxis("Verticle")); //A & D input
+        MovementHorizontal = (transform.forward * Input.GetAxis("Vertical")); //A & D input
         MovementVertical = (transform.right * Input.GetAxis("Horizontal")); //W & S input
 
         mouseHorizontal = Input.GetAxis("Mouse X"); //Mouse X input
         mouseVertical = Input.GetAxis("Mouse Y"); //Mouse Y input
 
         transform.Rotate(0.0f, (MouseSensitivity * mouseHorizontal), 0.0f); //Mouse Sensitivity
+
+        Crouching(Crouch);
+        Sprinting(Sprint);
 
         charController.Move((MovementHorizontal * (movementSpeed * Time.deltaTime))); //Handles all the player movement. Adjusts if the player is sprinting or not. Left & Right Movement
         charController.Move((MovementVertical * (movementSpeed * Time.deltaTime))); //Handles all the player movement. Adjusts if the player is sprinting or not. Forward & Back Movement

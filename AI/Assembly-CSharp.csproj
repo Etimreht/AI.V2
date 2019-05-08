@@ -61,8 +61,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\AI\GuardMain.cs" />
     <Compile Include="Assets\Script\AI\Hearing.cs" />
     <Compile Include="Assets\Script\AI\Sight.cs" />
+    <Compile Include="Assets\Script\AI\State\Chase.cs" />
+    <Compile Include="Assets\Script\AI\State\Investigate.cs" />
+    <Compile Include="Assets\Script\AI\State\Patrol.cs" />
+    <Compile Include="Assets\Script\AI\State\StateBase.cs" />
+    <Compile Include="Assets\Script\AI\State\StateMachine.cs" />
     <Compile Include="Assets\Script\Player\PlayerController.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>F:/Work/Year 3/Repos/AI.V2/AI/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
