@@ -10,10 +10,11 @@ public class PlayerController : MonoBehaviour
     float CrouchHeightNormal = 0.4332f, CrouchHeightCrouched = 0.5f, CrouchHeight = 1f; //Crouch Height Defaults  
 
     Vector3 MovementHorizontal = Vector3.zero, MovementVertical; //Movement Vectors
-    float mouseHorizontal = 0.0f, mouseVertical = 0.0f, maxInteractionDistance = 0.75f;
+    float mouseHorizontal = 0.0f, mouseVertical = 0.0f;
     public float MouseSensitivity = 1f;
     CharacterController charController;
     public SphereCollider NoiseSphere;
+    
 
     private void Awake()
     {
