@@ -7,12 +7,14 @@ public class GuardMain : MonoBehaviour
 {
     public Transform Target { get; private set; }
     public StateMachine StateMachine;
+    public float speed;
+    public bool PlayerHeard = false;
+    public Transform[] MovePoints;
+    
+    public int TargetPoint;
 
-
-
-
-	// Use this for initialization
-	private void Awake ()
+    // Use this for initialization
+    private void Awake ()
     {
         IntializeStateMachine();
 	}
@@ -21,16 +23,31 @@ public class GuardMain : MonoBehaviour
     {
         var StateList = new Dictionary<Type, StateBase>()
         {
-            { typeof(Patrol), new Patrol(guardMain: this) },
-           // { typeof(###), new ###(guardMain: this) },
-           // { typeof(###), new ###(guardMain: this) }
+            { typeof(Patrol), new Patrol(guardmain: this) },
+            { typeof(Chase), new Chase(guardmain: this) },
+            { typeof(Investigate), new Investigate(guardmain: this) }
             
         };
 
-        GetComponent<StateMachine>().SetStates(states);
+        GetComponent<StateMachine>().SetStates(StateList);
     }
 
+    public void MoveToNext()
+    {
+        if (MovePoints.Length == 0)
+        {
+            return;
+        }
+        transform.position = Vector3.MoveTowards(transform.position, MovePoints[TargetPoint].position, (speed * Time.deltaTime));
+        if (transform.position == MovePoints[TargetPoint].position)
+        {
+            transform.eulerAngles = Vector3.RotateTowards(transform.position, MovePoints[TargetPoint].position, (speed * Time.deltaTime), 0f);
+            TargetPoint = (TargetPoint + 1) % MovePoints.Length;
 
+        }
+
+
+    }
     public void Targeting(Transform target)
     {
         Target = target;
@@ -40,6 +57,6 @@ public class GuardMain : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		
+        Debug.Log(StateMachine.CurrentState);
 	}
 }

@@ -5,32 +5,37 @@ using System;
 
 public class Patrol : StateBase
 {
-    public Patrol(GuardMain guardMain) : base(guardMain.gameObject)
+
+    private GuardMain guardMain;
+    public bool DetectPlayer;
+    
+    
+
+
+    public Patrol(GuardMain guardmain) : base(guardmain.gameObject)
     {
-        
+        guardMain = guardmain;
     }
 
     public override Type Tick()
     {
-        var TargetChase = CheckAggro();
-        if (TargetChase != null)
+        if (DetectPlayer == true)
         {
-
+            return typeof(Chase);
+        }
+        if (guardMain.PlayerHeard == true)
+        {
+            return typeof(Investigate);
+        }
+        if(DetectPlayer == false)
+        {
+            guardMain.MoveToNext();
         }
 
         return null;
     }
+ 
 
 
-    // Use this for initialization
-    void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+    
 }

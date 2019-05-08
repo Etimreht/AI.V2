@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class StateMachine : MonoBehaviour
 {
@@ -10,9 +11,9 @@ public class StateMachine : MonoBehaviour
     public StateBase CurrentState { get; private set; }
     public event Action<StateBase> OnChangedState;
 
-    public  void SetStates(Dictionary<Type, StateBase> States)
+    public  void SetStates(Dictionary<Type, StateBase> AllStates)
     {
-        OpenStates = States;
+        OpenStates = AllStates;
     }
     
     private void Update()
@@ -23,9 +24,9 @@ public class StateMachine : MonoBehaviour
         }
 
 
-        var StateNext = CurrentState?.Tick();
+        var StateNext = CurrentState.Tick();
 
-        if(StateNext != null && StateNext != CurrentState?.GetType())
+        if(StateNext != null && StateNext != CurrentState.GetType())
         {
             NewStateSwitch(StateNext);
         }
@@ -33,7 +34,7 @@ public class StateMachine : MonoBehaviour
     private void NewStateSwitch(Type StateNext)
     {
         CurrentState = OpenStates[StateNext];
-        OnChangedState?.Invoke(CurrentState);
+        OnChangedState.Invoke(CurrentState);
     }
 
 
