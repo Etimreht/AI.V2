@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public float MouseSensitivity = 1f;
     CharacterController charController;
     public SphereCollider NoiseSphere;
+
+    public SphereCollider Key1, Key2, Key3;
     
 
     private void Awake()
@@ -26,8 +28,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        MovementHorizontal = (transform.forward * Input.GetAxis("Verticle")); //A & D input
-        MovementVertical = (transform.right * Input.GetAxis("Horizontal")); //W & S input
+        MovementHorizontal = (transform.forward * Input.GetAxis("Horizontal")); //A & D input
+        MovementVertical = (transform.right * Input.GetAxis("Verticle")); //W & S input
 
         mouseHorizontal = Input.GetAxis("Mouse X"); //Mouse X input
         mouseVertical = Input.GetAxis("Mouse Y"); //Mouse Y input
@@ -38,6 +40,8 @@ public class PlayerController : MonoBehaviour
         charController.Move((MovementVertical * (movementSpeed * Time.deltaTime))); //Handles all the player movement. Adjusts if the player is sprinting or not. Forward & Back Movement
         NoiseSphere.radius = noiseLevel;
         transform.localScale = new Vector3(0.4185318f, CrouchHeight, 0.363144f); //Changes the player height when the player crouches
+
+        
 
     }
 

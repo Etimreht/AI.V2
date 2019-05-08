@@ -6,7 +6,9 @@ public class Hearing : MonoBehaviour
 {
     public GameObject HearingPrefab;
     SphereCollider HearSphere;
-    public Transform AItransform; 
+    public Transform AItransform;
+
+    public bool PlayerHeard;
 
     private void Awake()
     {
@@ -20,7 +22,7 @@ public class Hearing : MonoBehaviour
         {
             if (hit == GameObject.Find("Player").GetComponent<SphereCollider>())
             {
-                //PlayersLastLocation = GameObject.Find("Player").transform.position;
+                PlayerHeard = true;
             }
         }
     }
