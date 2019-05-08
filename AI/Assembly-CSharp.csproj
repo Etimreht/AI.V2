@@ -62,6 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\AI\Hearing.cs" />
+    <Compile Include="Assets\Script\AI\Pathfinding\Grid.cs" />
+    <Compile Include="Assets\Script\AI\Pathfinding\Node.cs" />
     <Compile Include="Assets\Script\AI\Sight.cs" />
     <Compile Include="Assets\Script\Player\PlayerController.cs" />
     <Reference Include="UnityEditor.StandardEvents">
